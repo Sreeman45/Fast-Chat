@@ -1,4 +1,3 @@
-// This is the front end js file 
 
 const chatForm=document.getElementById('chat-form');
 const chatMessages=document.querySelector('.chat-messages');
@@ -8,20 +7,17 @@ const userList=document.getElementById('users');
 const {username, room}=Qs.parse(location.search,{
     ignoreQueryPrefix:true
 });
-
-//We now have access to the front end socket here 
+ 
 const socket=io();
 
-//send the room name and user name to the server 
+
 socket.emit('joinRoom',{username,room});
 
-//Get room and users
 socket.on('roomUsers',({room,users})=>{
     outputRoomName(room);
     outputUsers(users);
 });
 
-// Catch the message here
 socket.on('message', message=>{
     console.log(message);
 
@@ -30,14 +26,11 @@ socket.on('message', message=>{
     chatMessages.scrollTop=chatMessages.scrollHeight;
 });
 
-//Submit the form
 chatForm.addEventListener('submit',(e)=>{
     e.preventDefault();
 
-    //gettting the message
     const msg = e.target.elements.msg.value;
 
-    //Emit message to the server
     socket.emit('chatMessage', msg);
 
     e.target.elements.msg.value='';
@@ -45,7 +38,7 @@ chatForm.addEventListener('submit',(e)=>{
 
 });
 
-// Output message to DOM
+
 function outputMessage(message){
     const div = document.createElement('div');
 
@@ -59,7 +52,6 @@ function outputMessage(message){
 }
 
 
-//Output room name to DOM
 function outputRoomName(room){
     roomName.innerText=room;
 }
