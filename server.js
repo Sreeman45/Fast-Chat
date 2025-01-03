@@ -52,6 +52,7 @@ io.on('connection', (socket)=>{
 
 });
 
-server.listen(PORT || 8000,()=>{
+
+server.listen(process.env.PORT || 8000,()=>{
     console.log('app listening on ...')
 });
