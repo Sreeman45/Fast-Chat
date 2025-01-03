@@ -3,7 +3,6 @@ const path = require('path');
 const http=require('http'); 
 const socketio=require('socket.io');
 const app = express();
-PORT=3000;
 const formatMessage=require('./utils/messages');
 const  {userJoin,getCurrentUser, getRoomUsers, userLeave}=require('./utils/users');
 const server=http.createServer(app);
@@ -53,6 +52,6 @@ io.on('connection', (socket)=>{
 
 });
 
-server.listen(PORT,()=>{
+server.listen(PORT || 8000,()=>{
     console.log('app listening on ...')
 });
