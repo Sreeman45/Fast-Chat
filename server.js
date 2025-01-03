@@ -53,6 +53,6 @@ io.on('connection', (socket)=>{
 });
 
 
-server.listen(process.env.PORT || 8000,()=>{
+server.listen(process.env.PORT || 10000,'0.0.0.0',()=>{
     console.log('app listening on ...')
 });
